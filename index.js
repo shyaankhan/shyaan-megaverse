@@ -80,11 +80,13 @@ async function updateMap(updateObj) {
     if (await response.status == 200) {
       console.log(`${updateObj.method} ${endpoint} on [${updateObj.row}, ${updateObj.column}].`)
       return response
-    } else {
-      console.log("Retrying")
+    } else if(await response.status == 429) {
+      console.log("Taking a deep breath and trying again")
       await new Promise(resolve => setTimeout(resolve, 1500))
       await updateMap(updateObj) // Recursive retry logic to keep trying
       return response
+    } else {
+      console.log(`Failed to ${updateObj.method} ${endpoint} on [${updateObj.row}, ${updateObj.column}].`)
     }
   } catch (error) {
     console.log({ error })
