@@ -29,7 +29,10 @@ the entire map, making it pretty efficient.
 I spent quite a bit of time racking my brain on how to do this in an optimized way by looking for patterns. I noticed the polyanets were always coupled, either 1 row/column apart from each other, and changed directions every 4 sets. However, I got stumped on finding any patterns for comeths/soloons. The only way I was able to complete this challenge was by brute force.
 
 ## How to Run
-Clone this repo and run `node index.js`. Make sure you're using `v20.18.0`. Uncomment the function at the bottom of code to run it.
+1. Clone this repo.
+2. Uncomment the function at the bottom of code to run it.
+3. Make sure you're using `v20.18.0`.
+4. Run `node index.js`.
 
 ## Issues
 ### Node version
