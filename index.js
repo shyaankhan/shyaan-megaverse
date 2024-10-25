@@ -1,15 +1,5 @@
 const candidateId = "79fed4c0-443b-4236-9e7e-0f73428888d3"
 
-async function getMap() {
-  try {
-    const response = await fetch(`https://challenge.crossmint.io/api/map/${candidateId}/goal`)
-    const responseJSON = await response.json()
-    return responseJSON.goal
-  } catch (error){
-    return "Failed to retrieve map"
-  }
-}
-
 /* -------------------------------------------------------------------------------
 CHALLENGE 1
 Assumptions:
@@ -53,11 +43,24 @@ async function challenge2(clear = 0) {
         var direction = currentMapObject.split("_")[0].toLowerCase() // Split astral object to get the description of the object, make lowercase for the API
         await updateMap({ row, column, method, direction })
       }
-      if (map[row][column].includes("SOLOON")) {
+      if (currentMapObject.includes("SOLOON")) {
         var color = currentMapObject.split("_")[0].toLowerCase() // Split astral object to get the description of the object, make lowercase for the API
         await updateMap({ row, column, method, color })
       }
     }
+  }
+}
+
+/* -------------------------------------------------------------------------------
+Helper function get the current map. Any errors in retrieval will be handled
+------------------------------------------------------------------------------- */
+async function getMap() {
+  try {
+    const response = await fetch(`https://challenge.crossmint.io/api/map/${candidateId}/goal`)
+    const responseJSON = await response.json()
+    return responseJSON.goal
+  } catch (error){
+    return "Failed to retrieve map"
   }
 }
 
